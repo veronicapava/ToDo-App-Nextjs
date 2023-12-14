@@ -1,8 +1,21 @@
 import Head from 'next/head'
 import AddTask from './components/AddTask'
 import TodoList from './components/TodoList'
+import { useEffect, useState } from 'react';
 
 export default function Home() {
+      const baseUrl = 'http://localhost:3001'
+      const [tasks, setTasks] = useState([]);
+
+      useEffect(() => {
+        const fetchData = async () => {
+          const response = await fetch(`${baseUrl}/tasks`);
+          const json = await response.json();
+          setTasks(json);
+        };
+        fetchData();
+      }, []);
+  
   return (
     <>
       <Head>
@@ -17,7 +30,7 @@ export default function Home() {
             <div className="col-md-6 offset-md-3 text-center">
               <h1>To Do App</h1>
               <AddTask/>
-              <TodoList/>
+              <TodoList tasks={tasks} />
             </div>
           </div>
         </div>
