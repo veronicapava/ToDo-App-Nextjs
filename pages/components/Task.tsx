@@ -7,12 +7,10 @@ interface TaskProps {
 
 const Task: React.FC<TaskProps> = ({task}) => {
   return (
-    <>
-        <tr key={task.id}>
+        <tr>
             <td>{task.text}</td>
             <td>Done</td>
         </tr>
-    </>
   )
 }
 

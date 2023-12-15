@@ -6,12 +6,15 @@ import { useEffect, useState } from 'react';
 export default function Home() {
       const baseUrl = 'http://localhost:3001'
       const [tasks, setTasks] = useState([]);
-
       useEffect(() => {
         const fetchData = async () => {
-          const response = await fetch(`${baseUrl}/tasks`);
-          const json = await response.json();
-          setTasks(json);
+          try {
+            const response = await fetch(`${baseUrl}/tasks`);
+            const json = await response.json();
+            setTasks(json);
+          } catch (error) {
+            console.error('Error fetching data:', error);
+          }
         };
         fetchData();
       }, []);
