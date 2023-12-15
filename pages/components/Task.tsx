@@ -20,11 +20,25 @@ const Task: React.FC<TaskProps> = ({task}) => {
       setOpenModalEdit(false);
     };
 
+    const closeModalDelete = () => {
+      setOpenModalDeleted(false);
+    };
+
+    const handleCheckboxChange = async () => {
+      await editTodo({
+        id: task.id,
+        text: task.text,
+        completed: !task.completed,
+      });
+      router.refresh();
+    };
+
     const handleSubmitEditToDo: FormEventHandler<HTMLFormElement> = async (e) => {
       e.preventDefault()
       await editTodo({
         id: task.id,
-        text: taskToEdit
+        text: taskToEdit,
+        completed: task.completed
       })
       setTaskToEdit("")
       setOpenModalEdit(false)
@@ -39,7 +53,16 @@ const Task: React.FC<TaskProps> = ({task}) => {
   
   return (
         <tr>
-            <td>{task.text}</td>
+           <td>
+              <input
+                type="checkbox"
+                checked={task.completed}
+                onChange={handleCheckboxChange}
+              />
+              <span style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
+                {task.text}
+              </span>
+            </td>
             <td>
               <FaEdit onClick={() => setOpenModalEdit(true)} cursor='pointer' size={20}/>
 
@@ -84,15 +107,17 @@ const Task: React.FC<TaskProps> = ({task}) => {
 
               <Modal
                     isOpen={openModalDelete}
-                    onRequestClose={closeModal}
+                    onRequestClose={closeModalDelete}
                     contentLabel="Modal"
                     className="modal-dialog mx-auto my-5 modal-sm"
                 >
-                  <h3>Are you sure, you want to delete this task?</h3>
-                  <button onClick={() => handleDeleteTask(task.id)} className='btn btn-danger'>Yes</button>
-                  <button type="button" className="btn btn-danger" onClick={closeModal}>
-                          X
-                  </button>
+                    <div className="modal-content">
+                      <h3>Do you want to delete this task?</h3>
+                      <button onClick={() => handleDeleteTask(task.id)} className='btn btn-danger'>Yes</button>
+                      <button type="button" className="btn btn-primary" onClick={closeModalDelete}>
+                              No
+                      </button>
+                  </div>
                 </Modal>
             </td>
         </tr>

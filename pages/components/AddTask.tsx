@@ -14,7 +14,8 @@ const AddTask = () => {
     e.preventDefault()
     await addTodo({
       id: uuidv4(),
-      text: newTaskValue
+      text: newTaskValue,
+      completed: false
     })
     setNewTaskValue("")
     setModalIsOpen(false)
