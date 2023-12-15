@@ -1,13 +1,24 @@
+import { addTodo } from '@/api';
+import { useRouter } from 'next/navigation';
 import { FormEventHandler, useState } from 'react';
 import Modal from 'react-modal';
+import { v4 as uuidv4 } from 'uuid';
 
 const AddTask = () => {
+  const router = useRouter()
+
   const [modalIsOpen, setModalIsOpen] = useState(false);
   const [newTaskValue, setNewTaskValue] = useState<string>("")
 
-  const handleSubmitNewToDo: FormEventHandler<HTMLFormElement> = (e) => {
+  const handleSubmitNewToDo: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault()
+    await addTodo({
+      id: uuidv4(),
+      text: newTaskValue
+    })
     setNewTaskValue("")
+    setModalIsOpen(false)
+    router.refresh()
   }
 
   const openModal = () => {

@@ -9,7 +9,7 @@ export default function Home() {
       useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await fetch(`${baseUrl}/tasks`);
+            const response = await fetch(`${baseUrl}/tasks`, {cache: 'no-store'});
             const json = await response.json();
             setTasks(json);
           } catch (error) {
