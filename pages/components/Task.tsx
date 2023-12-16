@@ -13,8 +13,8 @@ const Task: React.FC<TaskProps> = ({task}) => {
   const router = useRouter()
     const [openModalEdit, setOpenModalEdit] = useState(false)
     const [openModalDelete, setOpenModalDeleted] = useState(false)
-
     const [taskToEdit, setTaskToEdit] = useState(task.text)
+    const [isChecked, setChecked] = useState(task.completed);
 
     const closeModal = () => {
       setOpenModalEdit(false);
@@ -25,11 +25,12 @@ const Task: React.FC<TaskProps> = ({task}) => {
     };
 
     const handleCheckboxChange = async () => {
-      await editTodo({
+      const updatedTodo = await editTodo({
         id: task.id,
         text: task.text,
-        completed: !task.completed,
+        completed: !isChecked,
       });
+      setChecked(updatedTodo.completed);
       router.refresh();
     };
 
@@ -55,10 +56,10 @@ const Task: React.FC<TaskProps> = ({task}) => {
         <tr>
            <td>
               <input
-                type="checkbox"
-                checked={task.completed}
-                onChange={handleCheckboxChange}
-              />
+                  type="checkbox"
+                  checked={isChecked}
+                  onChange={handleCheckboxChange}
+                />
               <span style={{ textDecoration: task.completed ? 'line-through' : 'none' }}>
                 {task.text}
               </span>

@@ -7,7 +7,7 @@ type Task = {
   completed: boolean,
   success?:boolean,
   message?:string,
-  affectedRows?: number
+  affectedRows?: number,
 }
 type Result = {
   message?: string,
@@ -17,20 +17,21 @@ export default async function handler(req: NextApiRequest,res: NextApiResponse<T
   const { id } = req.query;  
   
   if (req.method === "PUT") {
-    const {text} = req.body;
+    const {text,completed} = req.body;
 
       try {
         const result = await connection.query(
-          'UPDATE tasks SET text = ? WHERE id = ?', [text, id]
+          'UPDATE tasks SET text = ?, completed = ?  WHERE id = ?', [text,completed, id]
         );
 
         const affectedRows = (result as { affectedRows: number }).affectedRows;
-    
+
         res.status(200).json({
-          success: true, affectedRows: affectedRows,
+          success: true,
+          affectedRows: affectedRows,
           id: "",
           text: "",
-          completed: false
+          completed: completed
         });
       } catch (error) {
         console.error('Error updating into database:', error);
