@@ -4,12 +4,12 @@ import TodoList from './components/TodoList'
 import { useEffect, useState } from 'react';
 
 export default function Home() {
-      const baseUrl = 'http://localhost:3001'
       const [tasks, setTasks] = useState([]);
+
       useEffect(() => {
         const fetchData = async () => {
           try {
-            const response = await fetch(`${baseUrl}/tasks`, {cache: 'no-store'});
+            const response = await fetch(`api/tasks`, {cache: 'no-store'});
             const json = await response.json();
             setTasks(json);
           } catch (error) {

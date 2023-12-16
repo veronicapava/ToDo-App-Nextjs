@@ -12,14 +12,17 @@ const AddTask = () => {
 
   const handleSubmitNewToDo: FormEventHandler<HTMLFormElement> = async (e) => {
     e.preventDefault()
+    const uuid = uuidv4();
+    const shortNumber = uuid.replace(/-/g, '').substring(0, 30);
+
     await addTodo({
-      id: uuidv4(),
+      id: shortNumber,
       text: newTaskValue,
       completed: false
     })
-    setNewTaskValue("")
-    setModalIsOpen(false)
-    router.refresh()
+      setNewTaskValue("")
+      setModalIsOpen(false)
+      router.refresh()
   }
 
   const openModal = () => {
