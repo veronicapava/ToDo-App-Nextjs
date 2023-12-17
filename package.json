@@ -10,6 +10,7 @@
     "json-server": "json-server --watch data/todos.json --port 3001"
   },
   "dependencies": {
+    "@vercel/postgres": "^0.5.1",
     "bootstrap": "^5.3.2",
     "mysql": "^2.18.1",
     "next": "14.0.4",
