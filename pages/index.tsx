@@ -4,7 +4,7 @@ import TodoList from './components/TodoList'
 import { useEffect, useState } from 'react';
 
 export default function Home() {
-      const [tasks, setTasks] = useState([]);
+      const [tasks, setTasks] = useState([{id: "1", text: "This is a taks", completed: true}]);
 
       useEffect(() => {
         const fetchData = async () => {

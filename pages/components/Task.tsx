@@ -6,10 +6,16 @@ import { FaEdit, FaRegTrashAlt } from 'react-icons/fa'
 import Modal from 'react-modal';
 
 interface TaskProps {
-    task: ITask
+  task: ITask
 }
 
-const Task: React.FC<TaskProps> = ({task}) => {
+let defaultTask: ITask = {
+  id: "1",
+  text: "Create a new task",
+  completed: false,
+}
+
+const Task: React.FC<TaskProps> = ({task = defaultTask}) => {
   const router = useRouter()
     const [openModalEdit, setOpenModalEdit] = useState(false)
     const [openModalDelete, setOpenModalDeleted] = useState(false)

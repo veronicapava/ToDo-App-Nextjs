@@ -3,10 +3,17 @@ import React from "react"
 import Task from "./Task";
 
 interface TodoListProps {
-    tasks: ITask[];
+    tasks?: ITask[]; 
 }
 
-const TodoList: React.FC<TodoListProps> = ({tasks}) => {
+let defaultTasks: ITask[] = [{
+  id: "1",
+  text: "Create a new task",
+  completed: false,
+}]
+
+
+const TodoList: React.FC<TodoListProps> = ({tasks = defaultTasks}) => {
   return (
     <div className="container">
       <table className="table table-striped">
@@ -17,7 +24,7 @@ const TodoList: React.FC<TodoListProps> = ({tasks}) => {
           </tr>
         </thead>
         <tbody>
-          {tasks.map((task) => (<Task key={task.id} task={task}/>))}
+          {tasks && tasks.map((task) => (<Task key={task.id} task={task}/>))}
         </tbody>
       </table>
     </div>
