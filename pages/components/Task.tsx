@@ -36,14 +36,18 @@ const Task: React.FC<TaskProps> = ({task}) => {
 
     const handleSubmitEditToDo: FormEventHandler<HTMLFormElement> = async (e) => {
       e.preventDefault()
-      await editTodo({
-        id: task.id,
-        text: taskToEdit,
-        completed: task.completed
-      })
-      setTaskToEdit("")
-      setOpenModalEdit(false)
-      router.refresh()
+        if(taskToEdit !== undefined && taskToEdit !== null) {
+          await editTodo({
+            id: task.id,
+            text: taskToEdit,
+            completed: task.completed
+          })
+          setTaskToEdit("")
+          setOpenModalEdit(false)
+          router.refresh()
+        }else {
+          console.error("taskToEdit its not defined");
+        }
     }
     
     const handleDeleteTask = async (id: string) => {

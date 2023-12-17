@@ -33,7 +33,7 @@ export default function Home() {
             <div className="col-md-6 offset-md-3 text-center">
               <h1>To Do App</h1>
               <AddTask/>
-              <TodoList tasks={tasks} />
+              {tasks && <TodoList tasks={tasks} />}
             </div>
           </div>
         </div>
