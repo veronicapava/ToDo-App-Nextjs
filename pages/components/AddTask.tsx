@@ -41,31 +41,35 @@ const AddTask = () => {
         onRequestClose={closeModal}
         contentLabel="Modal"
         className="modal-dialog mx-auto my-5 modal-sm"
-        // overlayClassName="modal-overlay"
       >
         <div className="modal-content">
           
           <div className="modal-body">
             <form onSubmit={handleSubmitNewToDo}>
-              <div className="modal-header">
-                <h5 className="modal-title">ADD TASK HERE</h5>
+              <div className="modal-header d-flex justify-content-center align-items-center">
+                <h5 style={{ fontWeight: 'bold' }} className="modal-title">ADD TASK HERE</h5>
               </div>
-            <div className="modal-actions">
+            <div className="modal-input-group d-flex justify-content-between mt-3">
               <input
                 type="text"
                 onChange={e => setNewTaskValue(e.target.value)}
                 placeholder="Type here"
-                className='input input-bordered w-full'
+                className="input input-bordered flex-grow-1 mr-2"
               />
             </div>
+           
+          <div className="modal-buttons d-flex justify-content-between mt-3">
+            
+              <button type="button" className="btn btn-danger" onClick={closeModal}>
+                  X
+                </button>
+        
+                <button type="submit" className="btn btn-primary">
+                  Submit
+                </button>
 
-            <button type="button" className="btn btn-danger" onClick={closeModal}>
-              X
-            </button>
-     
-            <button type="submit" className="btn btn-primary">
-              Submit
-            </button>
+          </div>
+
    
           </form>
           </div>

@@ -8,8 +8,8 @@ interface TodoListProps {
 
 const TodoList: React.FC<TodoListProps> = ({tasks}) => {
   return (
-    <div>
-      <table className="table">
+    <div className="container">
+      <table className="table table-striped">
         <thead>
           <tr>
             <th scope="col">Task</th>

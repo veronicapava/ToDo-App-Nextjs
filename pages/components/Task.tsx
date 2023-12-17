@@ -54,8 +54,9 @@ const Task: React.FC<TaskProps> = ({task}) => {
   
   return (
         <tr>
-           <td>
+           <td style={{ display: 'flex', alignItems: 'center' }}>
               <input
+                  style={{ marginRight: '8px' }} 
                   type="checkbox"
                   checked={isChecked}
                   onChange={handleCheckboxChange}
