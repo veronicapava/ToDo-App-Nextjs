@@ -88,26 +88,30 @@ const Task: React.FC<TaskProps> = ({task = defaultTask}) => {
                       
                       <div className="modal-body">
                         <form onSubmit={handleSubmitEditToDo}>
-                          <div className="modal-header">
-                            <h5 className="modal-title">EDIT YOUR TASK</h5>
+                          <div className="modal-header d-flex justify-content-center align-items-center">
+                            <h5 style={{ fontWeight: 'bold' }} className="modal-title">EDIT YOUR TASK</h5>
                           </div>
-                        <div className="modal-actions">
+                        <div className="modal-input-group d-flex justify-content-between mt-3">
                           <input
                             value={taskToEdit}
                             type="text"
                             onChange={e => setTaskToEdit(e.target.value)}
                             placeholder="Type here"
-                            className='input input-bordered w-full'
+                            className='input input-bordered flex-grow-1 mr-2'
                           />
                         </div>
 
-                        <button type="button" className="btn btn-danger" onClick={closeModal}>
-                          X
-                        </button>
-                
-                        <button type="submit" className="btn btn-primary">
-                          Submit
-                        </button>
+                        <div className="modal-buttons d-flex justify-content-between mt-3">
+
+                            <button type="button" className="btn btn-danger" onClick={closeModal}>
+                              X
+                            </button>
+                    
+                            <button type="submit" className="btn btn-primary">
+                              Submit
+                            </button>
+
+                        </div>
               
                       </form>
                       </div>
@@ -124,9 +128,9 @@ const Task: React.FC<TaskProps> = ({task = defaultTask}) => {
                     className="modal-dialog mx-auto my-5 modal-sm"
                 >
                     <div className="modal-content">
-                      <h3>Do you want to delete this task?</h3>
+                      <h5 style={{ fontWeight: 'bold' }} className="modal-title text-center">Do you want to delete this task?</h5>
                       <button onClick={() => handleDeleteTask(task.id)} className='btn btn-danger'>Yes</button>
-                      <button type="button" className="btn btn-primary" onClick={closeModalDelete}>
+                      <button type="button" className="btn btn-primary mt-2" onClick={closeModalDelete}>
                               No
                       </button>
                   </div>

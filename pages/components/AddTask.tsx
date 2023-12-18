@@ -54,6 +54,7 @@ const AddTask = () => {
                 type="text"
                 onChange={e => setNewTaskValue(e.target.value)}
                 placeholder="Type here"
+                required
                 className="input input-bordered flex-grow-1 mr-2"
               />
             </div>

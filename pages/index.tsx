@@ -26,7 +26,7 @@ export default function Home() {
         <title>To Do App</title>
         <meta name="description" content="An app to organize your tasks" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" href="/favicon.ico" />
+        <link rel="icon" href="/check.png" />
       </Head>
       <main>
         <div className="container">
