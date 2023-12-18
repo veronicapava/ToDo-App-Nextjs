@@ -1,5 +1,7 @@
 import {connection} from "@/libs/db"
 import { NextApiRequest, NextApiResponse } from "next"
+import { sql } from '@vercel/postgres';
+ 
 
 type Task = {
     id: string,
@@ -9,7 +11,8 @@ type Task = {
 
 export default async function handler(req: NextApiRequest,res: NextApiResponse<Task>) {
   if(req.method === "GET"){
-    const result = await connection.query('SELECT * FROM tasks') as Task
+    // const result = await connection.query('SELECT * FROM tasks') as Task
+    const result = await sql`SELECT * FROM tasks;` as unknown as Task
     res.status(200).json(result)
 
   } else if (req.method === "POST") {
