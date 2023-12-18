@@ -1,4 +1,4 @@
-import {connection} from "@/libs/db"
+import { sql } from "@vercel/postgres";
 import { NextApiRequest, NextApiResponse } from "next"
 
 type Task = {
@@ -20,11 +20,8 @@ export default async function handler(req: NextApiRequest,res: NextApiResponse<T
     const {text,completed} = req.body;
 
       try {
-        const result = await connection.query(
-          'UPDATE tasks SET text = ?, completed = ?  WHERE id = ?', [text,completed, id]
-        );
-
-        const affectedRows = (result as { affectedRows: number }).affectedRows;
+        const result = await sql`UPDATE tasks SET text = ${text}, completed = ${completed}  WHERE id = ${<string>id};`
+        const affectedRows = (result as unknown as { affectedRows: number }).affectedRows;
 
         res.status(200).json({
           success: true,
@@ -39,10 +36,8 @@ export default async function handler(req: NextApiRequest,res: NextApiResponse<T
       
     } else if (req.method === "DELETE"){
       try {
-        const result = await connection.query(
-          'DELETE FROM tasks WHERE id = ?', [id]
-        );
-
+        const result = await sql`DELETE FROM tasks WHERE id = ${<string>id};`
+          
         const deletedResult : Result = {
           success: (result as any).affectedRows > 0,
         }
