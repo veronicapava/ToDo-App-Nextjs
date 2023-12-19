@@ -1,4 +1,4 @@
-import { deleteTodo, editTodo } from '@/api';
+import { deleteTodo, editTodo } from '@/pages/utils/api';
 import { ITask } from '@/types/tasks'
 import { useRouter } from 'next/navigation';
 import React, { FormEventHandler, useState } from 'react'

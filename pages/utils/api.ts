@@ -1,4 +1,4 @@
-import { ITask } from "./types/tasks";
+import { ITask } from "../../types/tasks";
 
 export const addTodo = async (todo: ITask): Promise<ITask> => {
     const res = await fetch(`api/tasks`, {

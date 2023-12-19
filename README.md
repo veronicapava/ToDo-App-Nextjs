@@ -21,3 +21,7 @@ npm run dev
 ```
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+
+#### To fix
+
+There is a slow problem with the 'Delete' method with the database in Vercel, I would have to figure out how to improve the performance of this query.
